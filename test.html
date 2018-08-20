@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ja">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>test</title>
+  <meta name="description" content="test">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="">
+  <link rel="stylesheet" href="css/jquery.minicolors.css">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
+  <style>
+    body {
+      font: 16px sans-serif;
+      line-height: 1.8;
+      padding: 0 40px;
+      margin-bottom: 200px;
+    }
+
+    a {
+      color: #08c;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .form-group {
+      margin: 20px 0;
+    }
+
+    label {
+      color: #888;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Demo</h1>
+
+  <img src="./img/img.jpg" alt="">
+  <!-- Control Types -->
+  <h3>Control Types</h3>
+  <div class="form-group">
+    <label for="hue-demo">Hue (default)</label>
+    <input type="text" id="hue-demo" class="demo" data-control="hue" value="#ff6161">
+  </div>
+
+  <!-- javascript -->
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"></script>
+  <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.2.1.min.js"><\/script>')</script>
+  <!-- MiniColors -->
+  <script src="js/jquery.minicolors.min.js"></script>
+  <!-- rgbaster -->
+  <script src="js/rgbaster.js"></script>
+  <!-- contrust -->
+  <script src="js/contrust.js"></script>
+
+  <script>
+    $(document).ready(function () {
+      $('.demo').each(function () {
+        //
+        // Dear reader, it's actually very easy to initialize MiniColors. For example:
+        //
+        //  $(selector).minicolors();
+        //
+        // The way I've done it below is just for the demo, so don't get confused
+        // by it. Also, data- attributes aren't supported at this time. Again,
+        // they're only used for the purposes of this demo.
+        //
+        $(this).minicolors({
+          control: $(this).attr('data-control') || 'hue',
+          defaultValue: $(this).attr('data-defaultValue') || '',
+          format: $(this).attr('data-format') || 'hex',
+          keywords: $(this).attr('data-keywords') || '',
+          inline: $(this).attr('data-inline') === 'true',
+          letterCase: $(this).attr('data-letterCase') || 'lowercase',
+          opacity: $(this).attr('data-opacity'),
+          position: $(this).attr('data-position') || 'bottom',
+          swatches: $(this).attr('data-swatches') ? $(this).attr('data-swatches').split('|') : [],
+          change: function (hex, opacity) {
+            var log;
+            try {
+              log = hex ? hex : 'transparent';
+              if (opacity) log += ', ' + opacity;
+              console.log(log);
+            } catch (e) { }
+          },
+          theme: 'default'
+        });
+      });
+    });
+  </script>
+</body>
+
+</html>
