@@ -42,7 +42,7 @@
 
   <h1>Demo</h1>
 
-  <img src="./img/img.jpg" alt="">
+  <img src="./img/img.jpg" id="sampling" height="300" alt="">
   <!-- Control Types -->
   <h3>Control Types</h3>
   <div class="form-group">
@@ -57,7 +57,7 @@
   <!-- MiniColors -->
   <script src="js/jquery.minicolors.min.js"></script>
   <!-- rgbaster -->
-  <script src="js/rgbaster.js"></script>
+  <script src="js/rgbaster.min.js"></script>
   <!-- contrust -->
   <script src="js/contrust.js"></script>
 
@@ -95,7 +95,23 @@
         });
       });
     });
+
   </script>
+
+  <script>
+    var sampleImage = document.getElementById('sampling');
+
+    RGBaster.colors(sampleImage, {
+      paletteSize: 30,
+      exclude: ['rgb(0,0,0)'],
+      success: function (payload) {
+        console.log(payload.dominant);
+        console.log(payload.secondary);
+        console.log(payload.palette);
+      }
+    });
+  </script>
+
 </body>
 
 </html>
